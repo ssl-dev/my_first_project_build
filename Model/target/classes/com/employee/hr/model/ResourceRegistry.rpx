@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.22.48" id="ResourceRegistry"
+             SeparateXMLFiles="false" Package="com.employee.hr.model" ClientType="Generic">
+  <pageMap>
+    <page path="v1_CountrieService" usageId="v1_HRAppModule_CountrieVOResources"/>
+    <page path="v1_DepartmentService" usageId="v1_HRAppModule_DepartmentVOResources"/>
+    <page path="v1_EmployeeService" usageId="v1_HRAppModule_EmployeeVOResources"/>
+    <page path="v1_JobService" usageId="v1_HRAppModule_JobVOResources"/>
+    <page path="v1_JobHistoryService" usageId="v1_HRAppModule_JobHistoryVOResources"/>
+    <page path="v1_LocationService" usageId="v1_HRAppModule_LocationVOResources"/>
+    <page path="v1_RegionService" usageId="v1_HRAppModule_RegionVOResources"/>
+  </pageMap>
+  <dataControlUsages>
+    <BC4JDataControl id="HRAppModuleDataControl" Package="com.employee.hr.model.module"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="HRAppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+  <pageDefinitionUsages>
+    <page id="v1_HRAppModule_CountrieVOResources"
+          path="com.employee.hr.model.entities.rest.v1.HRAppModule_CountrieVOResources"/>
+    <page id="v1_HRAppModule_DepartmentVOResources"
+          path="com.employee.hr.model.entities.rest.v1.HRAppModule_DepartmentVOResources"/>
+    <page id="v1_HRAppModule_EmployeeVOResources"
+          path="com.employee.hr.model.entities.rest.v1.HRAppModule_EmployeeVOResources"/>
+    <page id="v1_HRAppModule_JobVOResources" path="com.employee.hr.model.entities.rest.v1.HRAppModule_JobVOResources"/>
+    <page id="v1_HRAppModule_JobHistoryVOResources"
+          path="com.employee.hr.model.entities.rest.v1.HRAppModule_JobHistoryVOResources"/>
+    <page id="v1_HRAppModule_LocationVOResources"
+          path="com.employee.hr.model.entities.rest.v1.HRAppModule_LocationVOResources"/>
+    <page id="v1_HRAppModule_RegionVOResources"
+          path="com.employee.hr.model.entities.rest.v1.HRAppModule_RegionVOResources"/>
+  </pageDefinitionUsages>
+</Application>

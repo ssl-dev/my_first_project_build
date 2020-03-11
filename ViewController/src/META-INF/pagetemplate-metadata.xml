@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<pageTemplateDefs xmlns="http://xmlns.oracle.com/adf/faces/rich/pagetemplate">
+  <pagetemplate-jsp-ui-def>/pagetemplate/templateDef1.jsf</pagetemplate-jsp-ui-def>
+  <pagetemplate-jsp-ui-def>/pagetemplate/MyDreamTemplate.jsf</pagetemplate-jsp-ui-def>
+  <pagetemplate-jsp-ui-def>/pagetemplate/MyDreamPageTemplate.jsf</pagetemplate-jsp-ui-def>
+  <pagetemplate-jsp-ui-def>/pagetemplate/TCCMSPageTemplate.jsf</pagetemplate-jsp-ui-def>
+</pageTemplateDefs>

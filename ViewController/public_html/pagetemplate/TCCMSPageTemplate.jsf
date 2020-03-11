@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:pe="http://xmlns.oracle.com/adf/pageeditor"
+        xmlns:cust="http://xmlns.oracle.com/adf/faces/customizable" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="portalBundle" value="#{adfBundle['templatedemo.portal.PortalBundle']}"/>
+    <c:set var="contextRoot" value="${facesContext.externalContext.requestContextPath}" scope="session"/>
+    <c:set var="images" value="/${contextRoot}/oracle/webcenter/portalapp/shared/pagetemplates/images" scope="session"/>
+    <c:set var="showTemplate" value="${!composerContext.inEditMode or attrs.isEditingTemplate}" scope="session"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <af:pageTemplateDef var="attrs">
+        <!-- Main container -->
+        <af:panelGroupLayout id="pt_root" layout="scroll" inlineStyle="margin: 5px 0;">
+            <!-- centered vertical stack: banner, navbar, content, footer -->
+            <af:panelGroupLayout id="pt_main" layout="vertical" styleClass="mainStyle"
+                                 inlineStyle="width:#{attrs.contentWidth}; margin: 0 auto;">
+                <!-- ***** banner ***** -->
+                <af:panelBorderLayout id="pt_banner" styleClass="bannerStyle AFStretchWidth" rendered="#{showTemplate}">
+                    <!-- Logo image -->
+                    <f:facet name="start">
+                        <af:goLink id="home" destination="/">
+                            <af:image source="#{images}/logo.png"/>
+                        </af:goLink>
+                    </f:facet>
+                    <f:facet name="end">
+                        <af:panelGroupLayout layout="vertical" id="pt_pg12" halign="end"
+                                             inlineStyle="padding: 15px 0px">
+                            <!-- Welcome Message, Login/Logout -->
+                            <af:panelGroupLayout id="pt_pg13" layout="horizontal">
+                                <f:facet name="separator">
+                                    <af:spacer width="10" height="10" id="pt_s11"/>
+                                </f:facet>
+                                <!-- Welcome Message -->
+                                <af:outputText id="ot_username" rendered="#{securityContext.authenticated}"
+                                               value="#{portalBundle.welcome} : #{securityContext.userName}"/>
+                                <!-- Login/Logout -->
+                                <af:commandButton id="cb_login" rendered="#{attrs.showLogin and
+ !securityContext.authenticated}" text="#{portalBundle.login}">
+                                    <af:showPopupBehavior popupId="pt_p1" triggerType="click"/>
+                                </af:commandButton>
+                                <af:commandButton id="cb_logout" rendered="#{securityContext.authenticated}"
+                                                  action="#{o_w_s_l_LoginBackingBean.doLogout}"
+                                                  text="#{portalBundle.logout}"/>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="40" id="pt_s1"/>
+                            <!-- Global links: Search, Local changer, Admin Link -->
+                            <af:panelGroupLayout id="pt_pg14" inlineStyle="white-space:nowrap" layout="horizontal">
+                                <f:facet name="separator">
+                                    <af:outputText value="|" id="pt_bar1" styleClass="globalLinkSeparator"/>
+                                </f:facet>
+                                <!-- search -->
+                                <af:panelGroupLayout id="pt_pg16" layout="horizontal" valign="top">
+                                    <af:inputText id="it1" styleClass="searchtext" columns="10"/>
+                                    <af:commandButton id="pt_cl4" text="#{portalBundle.search_text}"/>
+                                </af:panelGroupLayout>
+                                <!-- Locale changer -->
+                                <af:panelGroupLayout layout="horizontal" id="pt_pg17">
+                                    <af:image source="#{images}/localizationMenuGlyph.png" id="pt_i1"/>
+                                    <af:spacer width="3" height="10" id="pt_sp10"/>
+                                    <af:selectOneChoice id="changelangsoc" autoSubmit="true"
+                                                        label="#{portalBundle.CHANGE_LOCALE}"
+                                                        valueChangeListener="#{ChangeLocale.listChanged}"
+                                                        styleClass="langsetter">
+                                        <f:selectItems value="#{ChangeLocale.supportLocales}" id="si_locals"/>
+                                    </af:selectOneChoice>
+                                </af:panelGroupLayout>
+                                <!-- Admin link -->
+                                <af:goLink id="pt_glnk1" destination="/admin" text="#{portalBundle.admin}"
+                                           styleClass="logintext" rendered="#{attrs.showAdmin}"/>
+                            </af:panelGroupLayout>
+                            <!-- logIn popup -->
+                            <af:popup id="pt_p1">
+                                <af:panelWindow id="pt_pw1" styleClass="loginPopupStyle" modal="true">
+                                    <!-- Login form -->
+                                    <af:subform id="pt_sf1" defaultCommand="pt_logincb">
+                                        <af:panelFormLayout id="pt_pfl1">
+                                            <af:panelLabelAndMessage id="pt_plam1" label="#{portalBundle.username}"
+                                                                     for="pt_it1" styleClass="logintext">
+                                                <af:inputText id="pt_it1" value="#{o_w_s_l_LoginBackingBean.userName}"
+                                                              columns="15"/>
+                                            </af:panelLabelAndMessage>
+                                            <af:panelLabelAndMessage id="pt_plam2" label="#{portalBundle.password}"
+                                                                     for="pt_it2" styleClass="logintext">
+                                                <af:inputText id="pt_it2" value="#{o_w_s_l_LoginBackingBean.password}"
+                                                              columns="15" secret="true"/>
+                                            </af:panelLabelAndMessage>
+                                            <af:spacer width="10" height="5" id="pt_s14"/>
+                                            <af:panelGroupLayout id="pt_pg18" layout="horizontal" halign="end">
+                                                <af:commandButton id="pt_logincb" text="#{portalBundle.login}"
+                                                                  action="#{o_w_s_l_LoginBackingBean.doLogin}"
+                                                                  styleClass="logintext"/>
+                                            </af:panelGroupLayout>
+                                        </af:panelFormLayout>
+                                    </af:subform>
+                                </af:panelWindow>
+                            </af:popup>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:panelBorderLayout>
+                <!-- ***** navbar ***** -->
+                <af:panelGroupLayout id="pt_navbar" layout="horizontal" styleClass="navbarStyle AFStretchWidth"
+                                     rendered="#{showTemplate}">
+                    <!-- iterate over navigation items -->
+                    <div id="navbox">
+                        <c:set var="navNodes" value="${navigationContext.defaultNavigationModel.listModel
+ ['startNode=/, includeStartNode=false']}" scope="page"/>
+                        <ul id="nav" class="navbar">
+                            <c:forEach var="menu" items="${navNodes}">
+                                <li>
+                                    <a href="${contextRoot}${menu.goLinkPrettyUrl}"
+                                       class="${menu.selected ? 'currentNode' : ''}">
+                                        ${menu.title}</a>
+                                     
+                                    <c:if test="${not empty menu.children}">
+                                        <ul>
+                                            <c:forEach var="child" items="#{menu.children}">
+                                                <li>
+                                                    <a href="${contextRoot}${child.goLinkPrettyUrl}"
+                                                       class="${child.selected ? 'currentNode' : ''}">
+                                                        ${child.title}</a>
+                                                     
+                                                    <c:if test="${not empty child.children}">
+                                                        <ul>
+                                                            <c:forEach var="grandchild" items="#{child.children}">
+                                                                <li>
+                                                                    <a href="${contextRoot}${grandchild.goLinkPrettyUrl}"
+                                                                       class="${grandchild.selected ? 'currentNode' : ''}">
+                                                                        ${grandchild.title}</a>
+                                                                </li>
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </c:if>
+                                                </li>
+                                            </c:forEach>
+                                        </ul>
+                                    </c:if>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </af:panelGroupLayout>
+                <!-- ***** content ***** -->
+                <af:panelBorderLayout id="pt_content" styleClass="contentStyle">
+                    <!-- content facet -->
+                    <af:facetRef facetName="content"/>
+                </af:panelBorderLayout>
+                <!-- ***** footer ***** -->
+                <af:panelGroupLayout id="pt_footer" layout="vertical" halign="center"
+                                     styleClass="footerStyle AFStretchWidth" rendered="#{showTemplate}">
+                    <af:panelGroupLayout id="pt_pg23" layout="horizontal">
+                        <af:forEach var="node" varStatus="vs" items="#{navigationContext.navigationModel['modelPath=/oracle/webcenter/portalapp/navigations/glo
+bal-navigation-model'].listModel['startNode=/, includeStartNode=false']}">
+                            <af:goLink id="cl2" styleClass="footerText" text="#{node.title}"
+                                       destination="#{node.goLinkPrettyUrl}"/>
+                            <af:outputText value="|" id="pt_bar2" styleClass="footerLinkSeparator"
+                                           rendered="#{!vs.last}"/>
+                        </af:forEach>
+                    </af:panelGroupLayout>
+                    <af:panelGroupLayout id="pt_pg25" layout="horizontal" styleClass="footerSpacer">
+                        <af:spacer width="10" height="1" id="pt_s9"/>
+                    </af:panelGroupLayout>
+                    <af:panelGroupLayout id="pt_pg26" layout="horizontal">
+                        <af:outputText id="pt_copyright" styleClass="footerText" value="#{portalBundle.copyright}"/>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </af:panelGroupLayout>
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <display-name>Application Page Template</display-name>
+                <facet>
+                    <description>Facet for content</description>
+                    <facet-name>content</facet-name>
+                </facet>
+                <attribute>
+                    <attribute-name>contentWidth</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <default-value>960px</default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>showNavigation</attribute-name>
+                    <attribute-class>java.lang.Boolean</attribute-class>
+                    <default-value>
+                        #{true}
+                    </default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>showGreetings</attribute-name>
+                    <attribute-class>java.lang.Boolean</attribute-class>
+                    <default-value>
+                        #{securityContext.authenticated}
+                    </default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>showLogin</attribute-name>
+                    <attribute-class>java.lang.Boolean</attribute-class>
+                    <default-value>
+                        #{true}
+                    </default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>showAdmin</attribute-name>
+                    <attribute-class>java.lang.Boolean</attribute-class>
+                    <default-value>
+                        #{WCSecurityContext.userInAppRole['Administrator']}
+                    </default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>isEditingTemplate</attribute-name>
+                    <attribute-class>java.lang.Boolean</attribute-class>
+                    <default-value>
+                        #{false}
+                    </default-value>
+                </attribute>
+            </component>
+        </af:xmlContent>
+    </af:pageTemplateDef>
+</f:view>

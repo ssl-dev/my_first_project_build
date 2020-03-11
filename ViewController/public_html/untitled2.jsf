@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mds:customization version="11.1.1.66.73" xmlns:mds="http://xmlns.oracle.com/mds" motype_local_name="root" motype_nsuri="http://java.sun.com/JSP/Page"
+                   xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+   <mds:insert parent="pgl" position="last">
+      <af:spacer xmlns:af="http://xmlns.oracle.com/adf/faces/rich" width="10" id="e3585717650" height="10"/>
+   </mds:insert>
+   <mds:insert parent="pgl" position="last">
+      <af:panelGroupLayout id="sdf_for_comp_dtrt2612066840"  xmlns="http://xmlns.oracle.com/adf/faces/customizable"
+                           layout="horizontal">
+         <attribute name="sdf_selection_rule" value="sdf_for_edit_mode_only" xmlns="http://java.sun.com/jsf/core"/>
+         <af:goLink xmlns:af="http://xmlns.oracle.com/adf/faces/rich" id="comp_dtrt2612066840" text="Parent Registration Report" inlineStyle="color:#4169e1;" targetFrame="_blank" destination="https://www.facebook.com/" shortDesc="(Family Portal Administrator Access Only)"/>
+         <af:outputText value="(Family Portal Administrator Access Only)" id="comp_dtrt2612066841"
+                        inlineStyle="color:#ff7342; font-size:small; margin-left:5px;"/>
+      </af:panelGroupLayout>
+   </mds:insert>
+</mds:customization>

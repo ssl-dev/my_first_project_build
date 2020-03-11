@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DeptMgrFkLink"
+  Version="12.2.1.22.48"
+  InheritPersonalization="merge">
+  <ViewLinkDefEnd
+    Name="EmployeeRVO"
+    Cardinality="1"
+    Source="true"
+    Owner="com.employee.hr.model.readonlyVO.EmployeeRVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="EmployeeRVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.employee.hr.model.readonlyVO.EmployeeRVO.EmployeeId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="DepartmentRVO"
+    Cardinality="-1"
+    Owner="com.employee.hr.model.readonlyVO.DepartmentRVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="DepartmentRVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.employee.hr.model.readonlyVO.DepartmentRVO.ManagerId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

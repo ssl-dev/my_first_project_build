@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.22.48" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.employee.hr.view" ClientType="Generic">
+  <pageMap>
+    <page path="/pagetemplate/MyDreamPageTemplate.jsf" usageId="com_employee_hr_view_MyDreamPageTemplatePageDef"/>
+    <page path="/untitled2.jsf" usageId="com_employee_hr_view_untitled2PageDef"/>
+    <page path="/pagetemplate/MyDreamTemplate.jsf" usageId="com_employee_hr_view_MyDreamTemplatePageDef"/>
+    <page path="/pagetemplate/templateDef1.jsf" usageId="com_employee_hr_view_templateDef1PageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_employee_hr_view_MyDreamPageTemplatePageDef" path="pagetemplate.MyDreamPageTemplatePageDef"/>
+    <page id="com_employee_hr_view_untitled2PageDef" path="com.employee.hr.view.pageDefs.untitled2PageDef"/>
+    <page id="com_employee_hr_view_MyDreamTemplatePageDef" path="pagetemplate.MyDreamTemplatePageDef"/>
+    <page id="com_employee_hr_view_templateDef1PageDef" path="pagetemplate.templateDef1PageDef"/>
+  </pageDefinitionUsages>
+</Application>

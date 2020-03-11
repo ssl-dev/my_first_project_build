@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CountrRegFkLink"
+  Version="12.2.1.22.48"
+  InheritPersonalization="merge">
+  <ViewLinkDefEnd
+    Name="RegionRVO"
+    Cardinality="1"
+    Source="true"
+    Owner="com.employee.hr.model.readonlyVO.RegionRVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="RegionRVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.employee.hr.model.readonlyVO.RegionRVO.RegionId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="CountrieRVO"
+    Cardinality="-1"
+    Owner="com.employee.hr.model.readonlyVO.CountrieRVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="CountrieRVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.employee.hr.model.readonlyVO.CountrieRVO.RegionId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.22.48"
+                id="HRAppModule_CountrieVOResources" Package="com.employee.hr.model.entities.rest.v1"
+                usageMode="RESTClient">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CountrieVO1" RangeSize="25" DataControl="HRAppModuleDataControl" id="CountrieVO1Iter"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CountrieVO1Iter" id="CountrieService" AccessorFolder="Always">
+      <nodeDefinition DefName="com.employee.hr.model.updatableVO.CountrieVO"
+                      Name="com.employee.hr.model.updatableVO.CountrieVO"/>
+    </tree>
+  </bindings>
+</pageDefinition>

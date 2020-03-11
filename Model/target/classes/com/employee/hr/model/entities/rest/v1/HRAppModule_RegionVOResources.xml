@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.22.48" id="HRAppModule_RegionVOResources"
+                Package="com.employee.hr.model.entities.rest.v1" usageMode="RESTClient">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="RegionVO1" RangeSize="25" DataControl="HRAppModuleDataControl" id="RegionVO1Iter"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="RegionVO1Iter" id="RegionService" AccessorFolder="Always">
+      <nodeDefinition DefName="com.employee.hr.model.updatableVO.RegionVO"
+                      Name="com.employee.hr.model.updatableVO.RegionVO"/>
+    </tree>
+  </bindings>
+</pageDefinition>
